@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="src\parallel_accumulate.h" />
     <ClInclude Include="src\scoped_thread.h" />
+    <ClInclude Include="src\threadsafe_stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
