@@ -1,68 +1,59 @@
-#include<iostream>
-#include<vector>
-#include<string>
-#include"parallel_accumulate.h"
-#include"threadsafe_stack.h"
-#include"scoped_thread.h"
+#include <iostream>
+#include <queue>
+#include <thread>
+#include<condition_variable>
+#include <chrono>
 
 
-threadsafe_stack<std::string> s;
+std::mutex mut;
+std::queue<std::string> data;
+std::condition_variable data_cond;
 
-void test1()
+void cin_data()
 {
-	for (int i = 0; i < 10; i++)
+	while (true)
 	{
-		s.push(std::string("new string"));
+		std::string temp;
+		std::lock_guard<std::mutex> lk(mut);
+		std::cout << "get string: ";
+		std::cin >> temp;
+		data.push(temp);
+		data_cond.notify_one();
 	}
 }
 
-void test2()
+void cout_data()
 {
-	for (int i = 0; i < 10; i++)
+	while (true)
 	{
-		s.push(std::string("new other string"));
-	}
-}
-
-void test3()
-{
-	for (int i = 0; i < 10; i++)
-	{
-		if (!s.empty())
+		std::unique_lock<std::mutex> lk(mut);
+		data_cond.wait(lk, [] {return !data.empty(); });
+		while (!data.empty())
 		{
-			s.pop();
+			std::string temp = data.front();
+			data.pop();
+			if (temp == "end")
+			{
+				std::cout << "goobye! (u tipe end)";
+				break;
+			}
+			else
+			{
+				std::cout << "your string " << temp << " is correct" << std::endl;
+			}
 		}
+		lk.unlock();
+		std::this_thread::sleep_for(std::chrono::seconds(2));
 	}
 }
+
+
 
 int main()
 {
-	/*std::vector<int> data(100);
-
-	for (int i = 0; i < 100; i++)
-	{
-		data[i] = i;
-	}
-
-	std::cout << "STL accumulate ger result "
-		<< std::accumulate(data.begin(), data.end(), 0) << std::endl;
-
-	std::cout << "Our paralel accumulate get result "
-		<< parallel_accumulate(data.begin(), data.end(), 0) << std::endl;*/
-
-	std::thread t1(test1);
-	std::thread t2(test2);
-	std::thread t3(test3);
-	t1.join();
-	t2.join();
-	t3.join();
-
-	
-
-	while (!s.empty())
-	{
-		std::cout << *s.pop() << std::endl;
-	}
-
+	std::thread cin_data_thread(cin_data);
+	std::thread coud_data_thread(cout_data);
+	cin_data_thread.join();
+	coud_data_thread.join();
 	return 0;
 }

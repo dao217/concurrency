@@ -21,6 +21,9 @@
     <ClCompile Include="src\scoped_thread.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\hierarchical_mutex.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\parallel_accumulate.h">
@@ -30,6 +33,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\threadsafe_stack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hierarchical_mutex.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

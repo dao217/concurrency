@@ -147,10 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\hierarchical_mutex.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\scoped_thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\hierarchical_mutex.h" />
     <ClInclude Include="src\parallel_accumulate.h" />
     <ClInclude Include="src\scoped_thread.h" />
     <ClInclude Include="src\threadsafe_stack.h" />
