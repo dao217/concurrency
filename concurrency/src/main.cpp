@@ -25,10 +25,10 @@ void cout_data()
 	while (true)
 	{
 		std::unique_lock<std::mutex> lk(mut);
+		std::string temp;
 
-		while (!data.empty())
+		while (data.try_pop(temp))
 		{
-			std::string temp = *data.wait_and_pop();
 			if (temp == "end")
 			{
 				std::cout << "goobye! (u tipe end)";
