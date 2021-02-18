@@ -1,24 +1,22 @@
 #include <iostream>
-#include <queue>
 #include <thread>
 #include<condition_variable>
 #include <chrono>
 
+#include"threadsafe_queue.h"
 
 std::mutex mut;
-std::queue<std::string> data;
-std::condition_variable data_cond;
+threadsafe_queue<std::string> data;
 
 void cin_data()
 {
 	while (true)
 	{
-		std::string temp;
 		std::lock_guard<std::mutex> lk(mut);
+		std::string temp;
 		std::cout << "get string: ";
 		std::cin >> temp;
 		data.push(temp);
-		data_cond.notify_one();
 	}
 }
 
@@ -27,15 +25,13 @@ void cout_data()
 	while (true)
 	{
 		std::unique_lock<std::mutex> lk(mut);
-		data_cond.wait(lk, [] {return !data.empty(); });
+
 		while (!data.empty())
 		{
-			std::string temp = data.front();
-			data.pop();
+			std::string temp = *data.wait_and_pop();
 			if (temp == "end")
 			{
 				std::cout << "goobye! (u tipe end)";
-				break;
 			}
 			else
 			{
@@ -43,7 +39,7 @@ void cout_data()
 			}
 		}
 		lk.unlock();
-		std::this_thread::sleep_for(std::chrono::seconds(2));
+		std::this_thread::sleep_for(std::chrono::seconds(10));
 	}
 }
 
