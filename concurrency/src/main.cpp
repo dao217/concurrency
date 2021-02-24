@@ -20,10 +20,15 @@ int main()
 	std::random_shuffle(v.begin(), v.end());
 	std::copy(v.begin(), v.end(), std::back_inserter(l));
 
-	execution_timer<std::chrono::nanoseconds> t;
+	execution_timer<> t;
 	t.start();
 	sequential_quick_sort(l);
 	std::cout << t.stop();
 	
+	t.start();
+	sequential_quick_sort(l);
+	std::cout << t.stop();
+
+
 	return 0;
 }

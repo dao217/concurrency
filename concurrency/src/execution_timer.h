@@ -49,7 +49,9 @@ public:
 			throw new execution_timer_error();
 		}
 		_stop = Clock::now();
-		return std::chrono::duration_cast<Resolution>(_stop - _start).count();
+		auto result = _stop - _start;
+		_start = _stop;
+		return std::chrono::duration_cast<Resolution>(result).count();
 	}
 
 private:

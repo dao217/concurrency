@@ -1,10 +1,10 @@
 ﻿  main.cpp
-C:\dev\concurrency\concurrency\src\execution_timer.h(52,70): warning C4244: return: преобразование "_Rep" в "double", возможна потеря данных
+C:\dev\concurrency\concurrency\src\execution_timer.h(54,62): warning C4244: return: преобразование "_Rep" в "double", возможна потеря данных
           with
           [
               _Rep=__int64
           ]
-C:\dev\concurrency\concurrency\src\execution_timer.h(46): message : во время компиляции функции-члена класс шаблон "double execution_timer<std::chrono::nanoseconds>::stop(void)"
-C:\dev\concurrency\concurrency\src\main.cpp(26): message : выполняется компиляция ссылки на экземпляр шаблон функции "double execution_timer<std::chrono::nanoseconds>::stop(void)"
-C:\dev\concurrency\concurrency\src\main.cpp(23): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "execution_timer<std::chrono::nanoseconds>"
+C:\dev\concurrency\concurrency\src\execution_timer.h(46): message : во время компиляции функции-члена класс шаблон "double execution_timer<std::chrono::milliseconds>::stop(void)"
+C:\dev\concurrency\concurrency\src\main.cpp(26): message : выполняется компиляция ссылки на экземпляр шаблон функции "double execution_timer<std::chrono::milliseconds>::stop(void)"
+C:\dev\concurrency\concurrency\src\main.cpp(23): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "execution_timer<std::chrono::milliseconds>"
   concurrency.vcxproj -> C:\dev\concurrency\bin\Win32-Debug\concurrency.exe
