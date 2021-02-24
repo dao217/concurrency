@@ -22,13 +22,15 @@ int main()
 
 	execution_timer<> t;
 	t.start();
-	sequential_quick_sort(l);
-	std::cout << t.stop();
-	
-	t.start();
-	sequential_quick_sort(l);
+	parallel_quick_sort(l);
 	std::cout << t.stop();
 
+	for (auto it : l)
+	{
+		std::cout << it;
+	}
+	
+	
 
 	return 0;
 }
