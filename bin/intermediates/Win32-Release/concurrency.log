@@ -8,8 +8,8 @@ C:\dev\concurrency\concurrency\src\execution_timer.h(46): message : во вре�
 C:\dev\concurrency\concurrency\src\main.cpp(33): message : выполняется компиляция ссылки на экземпляр шаблон функции "double execution_timer<std::chrono::microseconds>::stop(void)"
 C:\dev\concurrency\concurrency\src\main.cpp(29): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "execution_timer<std::chrono::microseconds>"
   Создание кода
-  12 of 1011 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
-    7 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+  3 of 1011 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   concurrency.vcxproj -> C:\dev\concurrency\bin\Win32-Release\concurrency.exe

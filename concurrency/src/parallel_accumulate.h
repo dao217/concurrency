@@ -55,3 +55,5 @@ inline T parallel_accumulate(Iterator first, Iterator last, T init)
 	return std::accumulate(results.begin(), results.end(), init);
 }
 
+
+

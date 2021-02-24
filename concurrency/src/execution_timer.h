@@ -42,7 +42,7 @@ public:
 		_start = Clock::now();
 	}
 
-	double stop()
+	double stop_d()
 	{
 		if (_start == _stop)
 		{
@@ -54,6 +54,17 @@ public:
 		return std::chrono::duration_cast<Resolution>(result).count();
 	}
 
+	auto stop()
+	{
+		if (_start == _stop)
+		{
+			throw new execution_timer_error();
+		}
+		_stop = Clock::now();
+		auto result = _stop - _start;
+		_start = _stop;
+		return std::chrono::duration_cast<Resolution>(result);
+	}
 private:
 	TimePoint _start;
 	TimePoint _stop;

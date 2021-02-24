@@ -4,39 +4,41 @@
 #include <vector>
 #include <random>
 #include<chrono>
+#include<algorithm>
 
 #include"sorts.h"
 #include"execution_timer.h"
+#include"parallel_accumulate.h"
+
+#define SIZE 1000000
 int main()
 {
-	std::vector<int> v1, v2;
-	std::list<int> l1, l2;
+	std::vector<int> test_vector;
+	test_vector.reserve(SIZE);
 
-	v1.reserve(10);
-	v2.reserve(10);
-	for (int i = 0; i < 1000; i++)
+	for (unsigned i = 0; i < SIZE; i++)
 	{
-		v1.push_back(i);
-		v2.push_back(i);
+		test_vector.push_back(i);
 	}
-	std::random_shuffle(v1.begin(), v1.end());
-	std::random_shuffle(v2.begin(), v2.end());
-	std::copy(v1.begin(), v1.end(), std::back_inserter(l1));
-	std::copy(v1.begin(), v1.end(), std::back_inserter(l2));
+	execution_timer<std::chrono::milliseconds> timer;
 
 
+	timer.start();
+	int result_parallel = parallel_accumulate(test_vector.begin(), test_vector.end(), 0);
+	double stop_parallel = timer.stop_d();
+	std::cout << "parallel accumulate result is " << result_parallel << std::endl;
+	std::cout << "parallel accumulate time is " << stop_parallel << std::endl;
 
-	execution_timer<std::chrono::microseconds> t;
-	
-	t.start();
-	l1 = parallel_quick_sort(l1);
-	std::cout << "parallel time is " << t.stop() << std::endl;
+	std::cout << "======================================" << std::endl;
+	std::cout << "======================================" << std::endl;
+	std::cout << "======================================" << std::endl;
 
-	t.start();
-	l1 = sequential_quick_sort(l2);
-	std::cout << "sequantial time is " << t.stop() << std::endl;
+	timer.start();
+	int result_std = std::accumulate(test_vector.begin(), test_vector.end(), 0);
+	double stop_std = timer.stop_d();
+	std::cout << "std accumulate result is " << result_std << std::endl;
+	std::cout << "std accumulate time is " << stop_std << std::endl;
 
-	
 
 	return 0;
 }
