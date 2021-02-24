@@ -4,9 +4,9 @@ C:\dev\concurrency\concurrency\src\execution_timer.h(54,62): warning C4244: retu
           [
               _Rep=__int64
           ]
-C:\dev\concurrency\concurrency\src\execution_timer.h(46): message : во время компиляции функции-члена класс шаблон "double execution_timer<std::chrono::milliseconds>::stop_d(void)"
-C:\dev\concurrency\concurrency\src\main.cpp(28): message : выполняется компиляция ссылки на экземпляр шаблон функции "double execution_timer<std::chrono::milliseconds>::stop_d(void)"
-C:\dev\concurrency\concurrency\src\main.cpp(23): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "execution_timer<std::chrono::milliseconds>"
+C:\dev\concurrency\concurrency\src\execution_timer.h(46): message : во время компиляции функции-члена класс шаблон "double execution_timer<std::chrono::nanoseconds>::stop_d(void)"
+C:\dev\concurrency\concurrency\src\main.cpp(28): message : выполняется компиляция ссылки на экземпляр шаблон функции "double execution_timer<std::chrono::nanoseconds>::stop_d(void)"
+C:\dev\concurrency\concurrency\src\main.cpp(23): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "execution_timer<std::chrono::nanoseconds>"
 C:\dev\concurrency\concurrency\src\parallel_accumulate.h(19,44): warning C4244: инициализация: преобразование "__int64" в "unsigned long", возможна потеря данных
 C:\dev\concurrency\concurrency\src\main.cpp(27): message : выполняется компиляция ссылки на экземпляр шаблон функции "T parallel_accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,int>(Iterator,Iterator,T)"
           with
@@ -17,8 +17,8 @@ C:\dev\concurrency\concurrency\src\main.cpp(27): message : выполняетс�
           ]
 C:\dev\concurrency\concurrency\src\parallel_accumulate.h(19,29): warning C4244: инициализация: преобразование "__int64" в "const unsigned long", возможна потеря данных
   Создание кода
-  3 of 281 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  9 of 286 functions ( 3.1%) were compiled, the rest were copied from previous compilation.
+    5 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   concurrency.vcxproj -> C:\dev\concurrency\bin\x64-Release\concurrency.exe

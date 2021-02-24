@@ -55,5 +55,13 @@ inline T parallel_accumulate(Iterator first, Iterator last, T init)
 	return std::accumulate(results.begin(), results.end(), init);
 }
 
-
+template<typename Iterator, typename T>
+T stupid_accumulate(Iterator first, Iterator last, T init)
+{
+	for (auto & it = first; it != last; it++)
+	{
+		init += *it;
+	}
+	return init;
+}
 

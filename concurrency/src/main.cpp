@@ -20,7 +20,7 @@ int main()
 	{
 		test_vector.push_back(i);
 	}
-	execution_timer<std::chrono::milliseconds> timer;
+	execution_timer<std::chrono::nanoseconds> timer;
 
 
 	timer.start();
@@ -38,6 +38,16 @@ int main()
 	double stop_std = timer.stop_d();
 	std::cout << "std accumulate result is " << result_std << std::endl;
 	std::cout << "std accumulate time is " << stop_std << std::endl;
+
+	std::cout << "======================================" << std::endl;
+	std::cout << "======================================" << std::endl;
+	std::cout << "======================================" << std::endl;
+
+	timer.start();
+	int result_stupid = stupid_accumulate(test_vector.begin(), test_vector.end(), 0);
+	double stop_stupid = timer.stop_d();
+	std::cout << "stupid accumulate result is " << result_stupid << std::endl;
+	std::cout << "stupid accumulate time is " << stop_stupid << std::endl;
 
 
 	return 0;
