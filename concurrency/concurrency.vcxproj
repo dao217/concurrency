@@ -152,6 +152,7 @@
     <ClCompile Include="src\scoped_thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\execution_timer.h" />
     <ClInclude Include="src\hierarchical_mutex.h" />
     <ClInclude Include="src\parallel_accumulate.h" />
     <ClInclude Include="src\scoped_thread.h" />

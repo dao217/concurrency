@@ -3,13 +3,6 @@
 #include<chrono>
 #include<functional>
 
-template<typename F, typename... Args>
-auto timer(F func, Args&&... args) {
-	auto begin = std::chrono::steady_clock::now();
-	func(std::forward<Args>(args)...);
-	auto end = std::chrono::steady_clock::now();
-	return std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-}
 
 template<typename T>
 inline std::list<T> sequential_quick_sort(std::list<T> input)

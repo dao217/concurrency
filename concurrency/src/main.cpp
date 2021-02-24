@@ -3,39 +3,27 @@
 #include <list>
 #include <vector>
 #include <random>
+#include<chrono>
 
 #include"sorts.h"
-
-std::list<int> sequential_quick_sort(std::list<int> input);
-
+#include"execution_timer.h"
 int main()
 {
-	std::vector<int> temp;
-	std::list<int> data;
+	std::vector<int> v;
+	std::list<int> l;
 
-	temp.reserve(10000);
+	v.reserve(10000);
 	for (int i = 0; i < 10000; i++)
 	{
-		temp.push_back(i);
+		v.push_back(i);
 	}
+	std::random_shuffle(v.begin(), v.end());
+	std::copy(v.begin(), v.end(), std::back_inserter(l));
 
-	std::random_device rd;
-	std::mt19937 generator(rd());
-	std::shuffle(temp.begin(), temp.end(), generator);
-	std::copy(temp.begin(), temp.end(), std::back_inserter(data));
-
-
-
+	execution_timer<std::chrono::nanoseconds> t;
+	t.start();
+	sequential_quick_sort(l);
+	std::cout << t.stop();
 	
-	data = sequential_quick_sort(data);
-
-	std::cout << timer(sequential_quick_sort, data);
-
-	for (auto it : data)
-	{
-		std::cout << it << std::endl;
-	}
-
-
 	return 0;
 }

@@ -1,4 +1,10 @@
 ﻿  main.cpp
-C:\dev\concurrency\concurrency\src\main.cpp(32,15): error C2672: "timer": не найдена соответствующая перегруженная функция
-C:\dev\concurrency\concurrency\src\main.cpp(32,48): error C2783: double timer(F,Args &&...): не удается составить аргумент шаблон для "F"
-C:\dev\concurrency\concurrency\src\sorts.h(13): message : см. объявление "timer"
+C:\dev\concurrency\concurrency\src\execution_timer.h(52,70): warning C4244: return: преобразование "_Rep" в "double", возможна потеря данных
+          with
+          [
+              _Rep=__int64
+          ]
+C:\dev\concurrency\concurrency\src\execution_timer.h(46): message : во время компиляции функции-члена класс шаблон "double execution_timer<std::chrono::nanoseconds>::stop(void)"
+C:\dev\concurrency\concurrency\src\main.cpp(26): message : выполняется компиляция ссылки на экземпляр шаблон функции "double execution_timer<std::chrono::nanoseconds>::stop(void)"
+C:\dev\concurrency\concurrency\src\main.cpp(23): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "execution_timer<std::chrono::nanoseconds>"
+  concurrency.vcxproj -> C:\dev\concurrency\bin\Win32-Debug\concurrency.exe
