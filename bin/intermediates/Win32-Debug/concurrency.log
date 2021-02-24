@@ -1,2 +1,4 @@
 ﻿  main.cpp
-  concurrency.vcxproj -> C:\dev\concurrency\bin\Win32-Debug\concurrency.exe
+C:\dev\concurrency\concurrency\src\main.cpp(32,15): error C2672: "timer": не найдена соответствующая перегруженная функция
+C:\dev\concurrency\concurrency\src\main.cpp(32,48): error C2783: double timer(F,Args &&...): не удается составить аргумент шаблон для "F"
+C:\dev\concurrency\concurrency\src\sorts.h(13): message : см. объявление "timer"

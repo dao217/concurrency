@@ -6,6 +6,7 @@
 
 #include"sorts.h"
 
+std::list<int> sequential_quick_sort(std::list<int> input);
 
 int main()
 {
@@ -27,6 +28,8 @@ int main()
 
 	
 	data = sequential_quick_sort(data);
+
+	std::cout << timer(sequential_quick_sort, data);
 
 	for (auto it : data)
 	{
