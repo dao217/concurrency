@@ -1,55 +1,38 @@
 #include <iostream>
-#include <thread>
-#include<condition_variable>
-#include <chrono>
+#include <iterator>
+#include <list>
+#include <vector>
+#include <random>
 
-#include"threadsafe_queue.h"
-
-std::mutex mut;
-threadsafe_queue<std::string> data;
-
-void cin_data()
-{
-	while (true)
-	{
-		std::lock_guard<std::mutex> lk(mut);
-		std::string temp;
-		std::cout << "get string: ";
-		std::cin >> temp;
-		data.push(temp);
-	}
-}
-
-void cout_data()
-{
-	while (true)
-	{
-		std::unique_lock<std::mutex> lk(mut);
-		std::string temp;
-
-		while (data.try_pop(temp))
-		{
-			if (temp == "end")
-			{
-				std::cout << "goobye! (u tipe end)";
-			}
-			else
-			{
-				std::cout << "your string " << temp << " is correct" << std::endl;
-			}
-		}
-		lk.unlock();
-		std::this_thread::sleep_for(std::chrono::seconds(10));
-	}
-}
-
+#include"sorts.h"
 
 
 int main()
 {
-	std::thread cin_data_thread(cin_data);
-	std::thread coud_data_thread(cout_data);
-	cin_data_thread.join();
-	coud_data_thread.join();
+	std::vector<int> temp;
+	std::list<int> data;
+
+	temp.reserve(10000);
+	for (int i = 0; i < 10000; i++)
+	{
+		temp.push_back(i);
+	}
+
+	std::random_device rd;
+	std::mt19937 generator(rd());
+	std::shuffle(temp.begin(), temp.end(), generator);
+	std::copy(temp.begin(), temp.end(), std::back_inserter(data));
+
+
+
+	
+	data = sequential_quick_sort(data);
+
+	for (auto it : data)
+	{
+		std::cout << it << std::endl;
+	}
+
+
 	return 0;
 }

@@ -155,6 +155,7 @@
     <ClInclude Include="src\hierarchical_mutex.h" />
     <ClInclude Include="src\parallel_accumulate.h" />
     <ClInclude Include="src\scoped_thread.h" />
+    <ClInclude Include="src\sorts.h" />
     <ClInclude Include="src\threadsafe_queue.h" />
     <ClInclude Include="src\threadsafe_stack.h" />
   </ItemGroup>
