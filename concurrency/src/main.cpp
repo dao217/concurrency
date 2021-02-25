@@ -5,49 +5,43 @@
 #include <random>
 #include<chrono>
 #include<algorithm>
-
+#include<atomic>
+#include<thread>
 #include"sorts.h"
 #include"execution_timer.h"
 #include"parallel_accumulate.h"
+#include"spinlock_mutex.h"
 
-#define SIZE 1000000
+
+void test1()
+{
+	while (true)
+	{
+		std::cout << "1" << std::endl;
+		std::cout << "1" << std::endl;
+		std::cout << "1" << std::endl;
+		std::this_thread::sleep_for(std::chrono::seconds(3));
+	}
+}
+
+void test2()
+{
+	while (true)
+	{
+		std::cout << "2" << std::endl;
+		std::cout << "2" << std::endl;
+		std::cout << "2" << std::endl;
+		std::this_thread::sleep_for(std::chrono::seconds(3));
+	}
+}
+
+
 int main()
 {
-	std::vector<int> test_vector;
-	test_vector.reserve(SIZE);
-
-	for (unsigned i = 0; i < SIZE; i++)
-	{
-		test_vector.push_back(i);
-	}
-	execution_timer<std::chrono::nanoseconds> timer;
-
-
-	timer.start();
-	int result_parallel = parallel_accumulate(test_vector.begin(), test_vector.end(), 0);
-	double stop_parallel = timer.stop_d();
-	std::cout << "parallel accumulate result is " << result_parallel << std::endl;
-	std::cout << "parallel accumulate time is " << stop_parallel << std::endl;
-
-	std::cout << "======================================" << std::endl;
-	std::cout << "======================================" << std::endl;
-	std::cout << "======================================" << std::endl;
-
-	timer.start();
-	int result_std = std::accumulate(test_vector.begin(), test_vector.end(), 0);
-	double stop_std = timer.stop_d();
-	std::cout << "std accumulate result is " << result_std << std::endl;
-	std::cout << "std accumulate time is " << stop_std << std::endl;
-
-	std::cout << "======================================" << std::endl;
-	std::cout << "======================================" << std::endl;
-	std::cout << "======================================" << std::endl;
-
-	timer.start();
-	int result_stupid = stupid_accumulate(test_vector.begin(), test_vector.end(), 0);
-	double stop_stupid = timer.stop_d();
-	std::cout << "stupid accumulate result is " << result_stupid << std::endl;
-	std::cout << "stupid accumulate time is " << stop_stupid << std::endl;
+	std::thread t1(test1);
+	std::thread t2(test2);
+	t1.join();
+	t2.join();
 
 
 	return 0;
